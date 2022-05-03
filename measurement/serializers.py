@@ -1,9 +1,7 @@
+from abc import ABC
+
 from rest_framework import serializers
 from measurement.models import Sensor, Measurement
-
-
-# TODO: опишите необходимые сериализаторы
-
 
 
 class SensorSerializer(serializers.ModelSerializer):
@@ -12,10 +10,9 @@ class SensorSerializer(serializers.ModelSerializer):
 		fields = ['id', 'name', 'description']
 
 
-class MeasurementSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = Measurement
-		fields = ['sensor', 'temperature', 'created_at']
+class MeasurementSerializer(serializers.Serializer):
+	temperature = serializers.FloatField()
+	created_at = serializers.DateTimeField()
 
 
 class SensorDetailSerializer(serializers.ModelSerializer):
